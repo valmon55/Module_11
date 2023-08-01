@@ -7,15 +7,27 @@ using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Polling;
+using Microsoft.Extensions.Hosting;
 
 namespace CS_Basic.Telegram_Bot
 {
-    internal class Bot
+    internal class Bot : BackgroundService
     {
         private ITelegramBotClient _telegramClient;
         public Bot(ITelegramBotClient telegramClient)
         { 
             _telegramClient = telegramClient; 
+        }
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            _telegramClient.StartReceiving(
+                HandleUpdateAsync, 
+                HandleErrorAsync, 
+                new ReceiverOptions() { AllowedUpdates = { } }, 
+                cancellationToken: stoppingToken);  
+
+            Console.WriteLine("Бот запущен!");
         }
         async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
@@ -26,7 +38,8 @@ namespace CS_Basic.Telegram_Bot
             }
             if (update.Type == UpdateType.Message)
             {
-                await _telegramClient.SendTextMessageAsync(update.Message.Chat.Id, "Вы отправили сообщение", cancellationToken: cancellationToken);
+                Console.WriteLine($"Получено сообщение {update.Message.Text}");
+                await _telegramClient.SendTextMessageAsync(update.Message.Chat.Id, $"Вы отправили сообщение {update.Message.Text}", cancellationToken: cancellationToken); ; ; ; ; ;
                 return;
             }
 
