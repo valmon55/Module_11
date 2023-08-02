@@ -37,7 +37,8 @@ namespace CS_Basic.Telegram_Bot.Services
         public string Process(string languageCode)
         {
             // Метод пока не реализован
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return "";
         }
     }
 }

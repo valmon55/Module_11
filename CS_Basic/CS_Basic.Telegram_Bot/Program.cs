@@ -28,6 +28,7 @@ namespace CS_Basic.Telegram_Bot
             AppSettings appSettings = BuildAppSettings();
             services.AddSingleton(BuildAppSettings());
 
+            services.AddSingleton<IFileHandler, AudioFileHandler>();
             services.AddSingleton<IStorage, MemoryStorage>();
 
             services.AddTransient<DefaultMessageController> ();
@@ -42,7 +43,10 @@ namespace CS_Basic.Telegram_Bot
         {
             return new AppSettings()
             {
-                BotToken = "6624725666:AAFPeHrqbTi2APohoKj5Omm_kzcWxDqTUJ0"
+                DownloadsFolder = "D:\\TelegramBot\\Download",
+                BotToken = "6624725666:AAFPeHrqbTi2APohoKj5Omm_kzcWxDqTUJ0",
+                AudioFileName = "audio",
+                InputAudioFormat = "ogg",
             };
         }
     }

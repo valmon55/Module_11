@@ -30,8 +30,8 @@ namespace CS_Basic.Telegram_Bot.Controllers
             _memoryStorage.GetSession(callbackQuery.From.Id).LanguageCode = callbackQuery.Data;
             string languageText = callbackQuery.Data switch
             {
-                "ru" => " Русский",
-                "en" => " Английский",
+                "ru" => "ru Русский",
+                "en" => "us Английский",
                 _ => string.Empty
             };
 
