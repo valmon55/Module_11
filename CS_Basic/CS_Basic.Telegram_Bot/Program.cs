@@ -2,6 +2,9 @@
 using Microsoft.Extensions.Hosting;
 using System.Text;
 using Telegram.Bot;
+using CS_Basic.Telegram_Bot.Controllers;
+using CS_Basic.Telegram_Bot.Services;
+using CS_Basic.Telegram_Bot.Configuration;
 
 namespace CS_Basic.Telegram_Bot
 {
@@ -22,8 +25,25 @@ namespace CS_Basic.Telegram_Bot
         }
         static void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient("6624725666:AAFPeHrqbTi2APohoKj5Omm_kzcWxDqTUJ0"));
+            AppSettings appSettings = BuildAppSettings();
+            services.AddSingleton(BuildAppSettings());
+
+            services.AddSingleton<IStorage, MemoryStorage>();
+
+            services.AddTransient<DefaultMessageController> ();
+            services.AddTransient<VoiceMessageController>();
+            services.AddTransient<TextMessageController>();
+            services.AddTransient<InlineKeyboardController>();
+
+            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(appSettings.BotToken));
             services.AddHostedService<Bot>();
+        }
+        static AppSettings BuildAppSettings()
+        {
+            return new AppSettings()
+            {
+                BotToken = "6624725666:AAFPeHrqbTi2APohoKj5Omm_kzcWxDqTUJ0"
+            };
         }
     }
 }
