@@ -48,7 +48,7 @@ namespace CS_Basic.Telegram_Bot
                 AudioFileName = "audio",
                 InputAudioFormat = "ogg",
                 OutputAudioFormat = "wav",
-                InputAudioBitrate = 16000,
+                InputAudioBitrate = 48000,
             };
         }
     }
