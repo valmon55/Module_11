@@ -29,5 +29,9 @@ namespace CS_Basic.Telegram_Bot.Configuration
         /// Формат аудио при загрузке
         /// </summary>
         public string OutputAudioFormat { get; set; }
+        /// <summary>
+        /// Битрейт аудио при загрузке
+        /// </summary>
+        public float InputAudioBitrate { get; set; }
     }
 }
