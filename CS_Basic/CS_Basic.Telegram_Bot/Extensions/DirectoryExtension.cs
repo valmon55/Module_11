@@ -8,7 +8,7 @@ namespace CS_Basic.Telegram_Bot.Extensions
 {
     public static class DirectoryExtension
     {
-        public static string GetSollutionRoot()
+        public static string GetSolutionRoot()
         {
             var dir = Path.GetDirectoryName(Directory.GetCurrentDirectory());
             var fullname = Directory.GetParent(dir).FullName;

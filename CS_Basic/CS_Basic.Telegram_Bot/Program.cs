@@ -47,6 +47,7 @@ namespace CS_Basic.Telegram_Bot
                 BotToken = "6624725666:AAFPeHrqbTi2APohoKj5Omm_kzcWxDqTUJ0",
                 AudioFileName = "audio",
                 InputAudioFormat = "ogg",
+                OutputAudioFormat = "wav",
             };
         }
     }

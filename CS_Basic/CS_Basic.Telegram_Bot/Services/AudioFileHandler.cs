@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telegram.Bot;
+using CS_Basic.Telegram_Bot.Utilities;
 
 namespace CS_Basic.Telegram_Bot.Services
 {
@@ -34,11 +35,16 @@ namespace CS_Basic.Telegram_Bot.Services
                 await _telegramBotClient.DownloadFileAsync(file.FilePath, destinationStream, ct);
             }
         }
-        public string Process(string languageCode)
+        public string Process(string inputParam)
         {
-            // Метод пока не реализован
-            //throw new NotImplementedException();
-            return "";
+            string inputAudioPath = Path.Combine(_appSettings.DownloadsFolder, $"{_appSettings.AudioFileName}.{_appSettings.InputAudioFormat}");
+            string outputAudioPath = Path.Combine(_appSettings.DownloadsFolder, $"{_appSettings.AudioFileName}.{_appSettings.OutputAudioFormat}");
+
+            Console.WriteLine("Начинаем конвертацию...");
+            AudioConverter.TryConvert(inputAudioPath, outputAudioPath);
+            Console.WriteLine("Файл конвертирован");
+
+            return "Конвертация успешно завершена";
         }
     }
 }
