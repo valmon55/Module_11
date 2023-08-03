@@ -29,7 +29,8 @@ namespace CS_Basic.Telegram_Bot.Controllers
                     buttons.Add(
                                 new[] {
                                     InlineKeyboardButton.WithCallbackData($" Русский" , $"ru"),
-                                    InlineKeyboardButton.WithCallbackData($" English" , $"en")
+                                    InlineKeyboardButton.WithCallbackData($" English" , $"en"),
+                                    InlineKeyboardButton.WithCallbackData($" Французский" , $"fr")
                                         }
                             );
                     await _telegramClient.SendTextMessageAsync(message.Chat.Id, 

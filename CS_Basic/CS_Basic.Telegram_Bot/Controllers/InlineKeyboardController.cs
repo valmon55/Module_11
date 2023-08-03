@@ -32,7 +32,8 @@ namespace CS_Basic.Telegram_Bot.Controllers
             string languageText = callbackQuery.Data switch
             {
                 "ru" => "ru Русский",
-                "en" => "us Английский",
+                "en" => "gb Английский",
+                "fr" => "fr Французский",
                 _ => string.Empty
             };
 
